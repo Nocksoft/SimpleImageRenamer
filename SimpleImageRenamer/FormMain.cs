@@ -60,7 +60,7 @@ namespace SimpleImageRenamer
 
             foreach (var item in images.FileNames)
             {
-                Images.Imagelist.Add(new Image(item, string.Empty));
+                Images.Imagelist.Add(new Image(item));
             }
             UpdateListViewImages();
         }
@@ -78,7 +78,7 @@ namespace SimpleImageRenamer
                 string extension = Path.GetExtension(item);
                 if (!Images.SupportedExtensions.Any(ext => ext[0].ToLower() == extension.ToLower())) continue;
 
-                Images.Imagelist.Add(new Image(item, string.Empty));
+                Images.Imagelist.Add(new Image(item));
             }
             UpdateListViewImages();
         }

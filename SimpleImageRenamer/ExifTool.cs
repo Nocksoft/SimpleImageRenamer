@@ -28,6 +28,7 @@
  * Programm erhalten haben. Wenn nicht, siehe <https://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Diagnostics;
 using System.IO;
 
@@ -65,7 +66,16 @@ namespace SimpleImageRenamer
             process.Start();
             string output = process.StandardOutput.ReadToEnd();
             process.WaitForExit();
-            return output;
+            return NormalizeExifToolDate(output);
+        }
+
+        private static string NormalizeExifToolDate(string exifToolOutput)
+        {
+            exifToolOutput = exifToolOutput.Replace(Environment.NewLine, string.Empty);
+            int index = exifToolOutput.IndexOf("+");
+            if (index >= 0)
+                exifToolOutput = exifToolOutput.Substring(0, index);
+            return exifToolOutput;
         }
     }
 }

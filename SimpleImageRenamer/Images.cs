@@ -62,7 +62,7 @@ namespace SimpleImageRenamer
 
         internal static void ResetNewFilenames()
         {
-            Imagelist.ForEach(image => { image.NewFilename = string.Empty; });
+            Imagelist.ForEach(image => { image.NewFilename = null; });
         }
     }
 
@@ -70,13 +70,15 @@ namespace SimpleImageRenamer
     {
         internal string AbsPath { get; private set; }
         internal string NewFilename { get; set; }
+        private string ExifDate { get; set; }
 
         internal Image() { }
 
-        internal Image(string abspath, string newFilename)
+        internal Image(string abspath)
         {
             AbsPath = abspath;
-            NewFilename = newFilename;
+            NewFilename = null;
+            ExifDate = null;
         }
 
         internal static void SetNewFilename(int index, string format)
@@ -84,25 +86,21 @@ namespace SimpleImageRenamer
             string extension = Path.GetExtension(Images.Imagelist[index].AbsPath);
             string imagetype = (from ext in Images.SupportedExtensions where ext[0].ToLower() == extension.ToLower() select ext[1]).First();
 
-            string exifToolOutput = null;
-            if (imagetype == "photo")
+            if (imagetype == "photo" && Images.Imagelist[index].ExifDate == null)
             {
-                exifToolOutput = ExifTool.GetTimestampFromPhoto(Images.Imagelist[index].AbsPath);
+                Images.Imagelist[index].ExifDate = ExifTool.GetTimestampFromPhoto(Images.Imagelist[index].AbsPath);
             }
-            else if (imagetype == "video")
+            else if (imagetype == "video" && Images.Imagelist[index].ExifDate == null)
             {
-                exifToolOutput = ExifTool.GetTimestampFromVideo(Images.Imagelist[index].AbsPath);
+                Images.Imagelist[index].ExifDate = ExifTool.GetTimestampFromVideo(Images.Imagelist[index].AbsPath);
             }
-            Images.Imagelist[index].NewFilename = GetNewFilename(exifToolOutput, format, extension);
+            
+            Images.Imagelist[index].NewFilename = GetNewFilename(Images.Imagelist[index].ExifDate, format, extension);
         }
 
-        private static string GetNewFilename(string exifToolOutput, string format, string extension)
+        private static string GetNewFilename(string exifDate, string format, string extension)
         {
-            if (exifToolOutput == null) return null;
-            exifToolOutput = exifToolOutput.Replace(Environment.NewLine, string.Empty);
-            int index = exifToolOutput.IndexOf("+");
-            if (index >= 0)
-                exifToolOutput = exifToolOutput.Substring(0, index);
+            if (exifDate == null) return null;
 
             string filename = format;
             string regex = @"(?<={)(.+?)(?=})";
@@ -110,12 +108,12 @@ namespace SimpleImageRenamer
 
             if (matches.Count() == 0)
             {
-                filename = DateTime.ParseExact(exifToolOutput, "yyyy:MM:dd HH:mm:ss", CultureInfo.InvariantCulture).ToString(format);
+                filename = DateTime.ParseExact(exifDate, "yyyy:MM:dd HH:mm:ss", CultureInfo.InvariantCulture).ToString(format);
             }
 
             foreach (var item in matches)
             {
-                string timestring = DateTime.ParseExact(exifToolOutput, "yyyy:MM:dd HH:mm:ss", CultureInfo.InvariantCulture).ToString(item.Value);
+                string timestring = DateTime.ParseExact(exifDate, "yyyy:MM:dd HH:mm:ss", CultureInfo.InvariantCulture).ToString(item.Value);
                 filename = filename.Replace($"{{{item.Value}}}", timestring);
             }
 
