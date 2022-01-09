@@ -69,6 +69,7 @@ namespace SimpleImageRenamer
         {
             var directory = new FolderBrowserDialog();
             directory.Description = "Select a folder that contains the photos and videos you want to rename.";
+            directory.ShowNewFolderButton = false;
             if (directory.ShowDialog() != DialogResult.OK) return;
 
             string[] images = Directory.GetFiles(directory.SelectedPath);
