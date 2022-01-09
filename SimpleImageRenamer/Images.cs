@@ -60,6 +60,11 @@ namespace SimpleImageRenamer
             return $"Photos and Videos ({filter})|{filter}";
         }
 
+        internal static void ResetImagelist()
+        {
+            Imagelist.Clear();
+        }
+
         internal static void ResetNewFilenames()
         {
             Imagelist.ForEach(image => { image.NewFilename = null; });
@@ -132,7 +137,7 @@ namespace SimpleImageRenamer
         internal static void RenameImage(string oldname, string newname)
         {
             newname = Path.Combine(Path.GetDirectoryName(oldname), newname);
-            if (!File.Exists(newname))
+            if (File.Exists(oldname) && !File.Exists(newname))
             {
                 File.Move(oldname, newname);
             }

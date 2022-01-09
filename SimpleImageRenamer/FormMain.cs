@@ -145,6 +145,10 @@ namespace SimpleImageRenamer
         {
             LockGui();
             Cursor = Cursors.WaitCursor;
+            if (Images.Imagelist.Count == 0)
+            {
+                statusStripStatusLabelStatus.Text = "No files to rename.";
+            }
             backgroundWorkerRenameImages.RunWorkerAsync();
         }
 
@@ -164,6 +168,7 @@ namespace SimpleImageRenamer
 
         private void backgroundWorkerRenameImages_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
+            Images.ResetImagelist();
             Cursor = Cursors.Default;
             UnlockGui();
         }
