@@ -93,7 +93,10 @@ namespace SimpleImageRenamer
             if (e.KeyCode != Keys.Enter) return;
 
             e.SuppressKeyPress = true;
-            radioButtonFormatCustom.Checked = true;
+            if (!radioButtonFormatCustom.Checked)
+                radioButtonFormatCustom.Checked = true;
+            else
+                UpdateListViewImages();
         }
 
         private void UpdateListViewImages()
