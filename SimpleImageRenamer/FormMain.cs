@@ -138,7 +138,7 @@ namespace SimpleImageRenamer
             foreach (var item in Images.Imagelist)
             {
                 var lvItem = new ListViewItem(new string[] {
-                    item.AbsPath,
+                    Path.GetDirectoryName(item.AbsPath),
                     Path.GetFileName(item.AbsPath),
                     item.NewFilename,
                 });

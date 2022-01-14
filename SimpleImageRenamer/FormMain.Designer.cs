@@ -37,7 +37,7 @@ namespace SimpleImageRenamer
             this.buttonAddFiles = new System.Windows.Forms.Button();
             this.buttonAddDirectory = new System.Windows.Forms.Button();
             this.listViewImages = new System.Windows.Forms.ListView();
-            this.columnHeaderAbsPath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderDirectory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderOldName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderNewName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buttonStartRenaming = new System.Windows.Forms.Button();
@@ -117,7 +117,7 @@ namespace SimpleImageRenamer
             // listViewImages
             // 
             this.listViewImages.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeaderAbsPath,
+            this.columnHeaderDirectory,
             this.columnHeaderOldName,
             this.columnHeaderNewName});
             this.listViewImages.FullRowSelect = true;
@@ -129,10 +129,10 @@ namespace SimpleImageRenamer
             this.listViewImages.UseCompatibleStateImageBehavior = false;
             this.listViewImages.View = System.Windows.Forms.View.Details;
             // 
-            // columnHeaderAbsPath
+            // columnHeaderDirectory
             // 
-            this.columnHeaderAbsPath.Text = "File";
-            this.columnHeaderAbsPath.Width = 300;
+            this.columnHeaderDirectory.Text = "Directory";
+            this.columnHeaderDirectory.Width = 300;
             // 
             // columnHeaderOldName
             // 
@@ -258,7 +258,7 @@ namespace SimpleImageRenamer
         private System.Windows.Forms.Button buttonAddFiles;
         private System.Windows.Forms.Button buttonAddDirectory;
         private System.Windows.Forms.ListView listViewImages;
-        private System.Windows.Forms.ColumnHeader columnHeaderAbsPath;
+        private System.Windows.Forms.ColumnHeader columnHeaderDirectory;
         private System.Windows.Forms.ColumnHeader columnHeaderOldName;
         private System.Windows.Forms.ColumnHeader columnHeaderNewName;
         private System.Windows.Forms.Button buttonStartRenaming;
