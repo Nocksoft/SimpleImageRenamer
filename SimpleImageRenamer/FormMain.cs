@@ -67,9 +67,18 @@ namespace SimpleImageRenamer
 
         private void buttonAddDirectory_Click(object sender, EventArgs e)
         {
+            string uncPath = null;
+            if (ModifierKeys == Keys.Control)
+            {
+                var uncPathSelector = new FormUnc();
+                if (uncPathSelector.ShowDialog() != DialogResult.OK) return;
+                uncPath = uncPathSelector.UncPath;
+            }
+
             var directory = new FolderBrowserDialog();
             directory.Description = "Select a folder that contains the photos and videos you want to rename.";
             directory.ShowNewFolderButton = false;
+            if (!string.IsNullOrWhiteSpace(uncPath)) directory.SelectedPath = uncPath;
             if (directory.ShowDialog() != DialogResult.OK) return;
 
             string[] images = Directory.GetFiles(directory.SelectedPath);

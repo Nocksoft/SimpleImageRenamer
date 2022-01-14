@@ -74,6 +74,12 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormUnc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUnc.Designer.cs">
+      <DependentUpon>FormUnc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Images.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectProperties.cs" />
@@ -84,6 +90,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUnc.resx">
+      <DependentUpon>FormUnc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

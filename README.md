@@ -14,6 +14,9 @@ SimpleImageRenamer can rename multiple images at the same time and currently sup
 
 ![SimpleImageRenamer](SimpleImageRenamer.png)
 
+## How to work with UNC paths
+To enter UNC paths as location for your photos and videos, just press STRG and click "Add Directory".
+
 ## How to use custom formats
 To use custom formats, just enter your format in the textbox and hit ENTER. You can use "IMG_{yyyyMMdd}_{HHmmss}" for example.
 
