@@ -86,7 +86,7 @@ namespace SimpleImageRenamer
             ExifDate = null;
         }
 
-        internal static void SetNewFilename(int index, string format)
+        internal static bool SetNewFilename(int index, string format)
         {
             string extension = Path.GetExtension(Images.Imagelist[index].AbsPath);
             string imagetype = (from ext in Images.SupportedExtensions where ext[0].ToLower() == extension.ToLower() select ext[1]).First();
@@ -99,8 +99,17 @@ namespace SimpleImageRenamer
             {
                 Images.Imagelist[index].ExifDate = ExifTool.GetTimestampFromVideo(Images.Imagelist[index].AbsPath);
             }
-            
-            Images.Imagelist[index].NewFilename = GetNewFilename(Images.Imagelist[index].ExifDate, format, extension);
+
+            try
+            {
+                Images.Imagelist[index].NewFilename = GetNewFilename(Images.Imagelist[index].ExifDate, format, extension);
+                return true;
+            }
+            catch (Exception)
+            {
+                Images.Imagelist[index].NewFilename = Path.GetFileName(Images.Imagelist[index].AbsPath);
+                return false;
+            }
         }
 
         private static string GetNewFilename(string exifDate, string format, string extension)
@@ -111,9 +120,13 @@ namespace SimpleImageRenamer
             string regex = @"(?<={)(.+?)(?=})";
             var matches = Regex.Matches(format, regex).Cast<Match>();
 
-            if (matches.Count() == 0)
+            if (matches.Count() == 0 && format == "yyyyMMdd_HHmmss")
             {
                 filename = DateTime.ParseExact(exifDate, "yyyy:MM:dd HH:mm:ss", CultureInfo.InvariantCulture).ToString(format);
+            }
+            else if (matches.Count() == 0)
+            {
+                filename = format;
             }
 
             foreach (var item in matches)

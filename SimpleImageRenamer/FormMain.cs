@@ -123,7 +123,12 @@ namespace SimpleImageRenamer
 
             for (int i = 0; i < Images.Imagelist.Count; i++)
             {
-                Image.SetNewFilename(i, format);
+                bool success = Image.SetNewFilename(i, format);
+                if (!success)
+                {
+                    MessageBox.Show($"No valid EXIF date could be read for \"{Images.Imagelist[i].AbsPath }\".{Environment.NewLine}When renaming, the old name will be retained.",
+                        "Error while reading EXIF date", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
                 Invoke(new MethodInvoker(delegate
                 {
                     int percent = Convert.ToInt32(((decimal)i + 1) / Images.Imagelist.Count * 100);
