@@ -50,6 +50,7 @@ namespace SimpleImageRenamer
             this.textBoxUncPath.Name = "textBoxUncPath";
             this.textBoxUncPath.Size = new System.Drawing.Size(225, 20);
             this.textBoxUncPath.TabIndex = 1;
+            this.textBoxUncPath.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxUncPath_KeyDown);
             // 
             // buttonOk
             // 

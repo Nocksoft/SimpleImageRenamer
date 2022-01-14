@@ -43,6 +43,14 @@ namespace SimpleImageRenamer
             Text = "Provide a UNC path...";
         }
 
+        private void textBoxUncPath_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter) return;
+
+            e.SuppressKeyPress = true;
+            buttonOk.PerformClick();
+        }
+
         private void buttonOk_Click(object sender, System.EventArgs e)
         {
             if (textBoxUncPath.Text.StartsWith(@"\\") && textBoxUncPath.Text.Length >= 3)
