@@ -42,7 +42,7 @@ namespace SimpleImageRenamer
         {
             InitializeComponent();
 
-            Text = $"{ProjectProperties.GetTitle()} - Version: {ProjectProperties.GetVersion()}";
+            Text = $"{ProjectProperties.GetTitle()} - Version: {ProjectProperties.GetVersion()} (preview)";
         }
 
         private void FormMain_Load(object sender, EventArgs e)
