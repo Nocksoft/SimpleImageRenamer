@@ -131,6 +131,8 @@ namespace SimpleImageRenamer
 
             foreach (var item in matches)
             {
+                if (!new Regex(@"^[yMdHms]+$").Match(item.Value).Success) continue;
+
                 string timestring = DateTime.ParseExact(exifDate, "yyyy:MM:dd HH:mm:ss", CultureInfo.InvariantCulture).ToString(item.Value);
                 filename = filename.Replace($"{{{item.Value}}}", timestring);
             }
