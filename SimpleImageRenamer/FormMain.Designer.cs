@@ -125,7 +125,7 @@ namespace SimpleImageRenamer
             this.listViewImages.Location = new System.Drawing.Point(12, 82);
             this.listViewImages.Name = "listViewImages";
             this.listViewImages.Size = new System.Drawing.Size(704, 213);
-            this.listViewImages.TabIndex = 3;
+            this.listViewImages.TabIndex = 6;
             this.listViewImages.UseCompatibleStateImageBehavior = false;
             this.listViewImages.View = System.Windows.Forms.View.Details;
             // 
@@ -149,7 +149,7 @@ namespace SimpleImageRenamer
             this.buttonStartRenaming.Location = new System.Drawing.Point(12, 301);
             this.buttonStartRenaming.Name = "buttonStartRenaming";
             this.buttonStartRenaming.Size = new System.Drawing.Size(110, 23);
-            this.buttonStartRenaming.TabIndex = 5;
+            this.buttonStartRenaming.TabIndex = 7;
             this.buttonStartRenaming.Text = "Rename {n} Files";
             this.buttonStartRenaming.UseVisualStyleBackColor = true;
             this.buttonStartRenaming.Click += new System.EventHandler(this.buttonStartRenaming_Click);
@@ -161,7 +161,7 @@ namespace SimpleImageRenamer
             this.radioButtonFormatDefault.Location = new System.Drawing.Point(12, 58);
             this.radioButtonFormatDefault.Name = "radioButtonFormatDefault";
             this.radioButtonFormatDefault.Size = new System.Drawing.Size(123, 17);
-            this.radioButtonFormatDefault.TabIndex = 6;
+            this.radioButtonFormatDefault.TabIndex = 3;
             this.radioButtonFormatDefault.TabStop = true;
             this.radioButtonFormatDefault.Text = "yyyyMMdd_HHmmss";
             this.radioButtonFormatDefault.UseVisualStyleBackColor = true;
@@ -173,7 +173,7 @@ namespace SimpleImageRenamer
             this.radioButtonFormatCustom.Location = new System.Drawing.Point(141, 60);
             this.radioButtonFormatCustom.Name = "radioButtonFormatCustom";
             this.radioButtonFormatCustom.Size = new System.Drawing.Size(14, 13);
-            this.radioButtonFormatCustom.TabIndex = 7;
+            this.radioButtonFormatCustom.TabIndex = 4;
             this.radioButtonFormatCustom.UseVisualStyleBackColor = true;
             this.radioButtonFormatCustom.CheckedChanged += new System.EventHandler(this.radioButtonFormat_CheckedChanged);
             // 
@@ -182,7 +182,7 @@ namespace SimpleImageRenamer
             this.textBoxFormatCustom.Location = new System.Drawing.Point(161, 56);
             this.textBoxFormatCustom.Name = "textBoxFormatCustom";
             this.textBoxFormatCustom.Size = new System.Drawing.Size(150, 20);
-            this.textBoxFormatCustom.TabIndex = 8;
+            this.textBoxFormatCustom.TabIndex = 5;
             this.textBoxFormatCustom.Text = "{yyyyMMdd}_{HHmmss}";
             this.textBoxFormatCustom.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxFormatCustom_KeyDown);
             // 
