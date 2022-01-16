@@ -33,24 +33,21 @@ using System.Windows.Forms;
 
 namespace SimpleImageRenamer
 {
-    internal static class ProjectProperties
+    internal static class AppInfo
     {
-        internal static string GetTitle()
-        {
-            return Application.ProductName;
-        }
+        internal static string Title => Application.ProductName;
 
-        internal static string GetVersion()
-        {
-            string major = Assembly.GetExecutingAssembly().GetName().Version.Major.ToString();
-            string minor = Assembly.GetExecutingAssembly().GetName().Version.Minor.ToString();
-            string build = Assembly.GetExecutingAssembly().GetName().Version.Build.ToString();
-            return $"{major}.{minor}.{build}";
-        }
+        internal static string Description => Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyDescriptionAttribute>().Description;
 
-        internal static string GetDescription()
+        internal static string Version
         {
-            return Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyDescriptionAttribute>().Description;
+            get
+            {
+                string major = Assembly.GetExecutingAssembly().GetName().Version.Major.ToString();
+                string minor = Assembly.GetExecutingAssembly().GetName().Version.Minor.ToString();
+                string build = Assembly.GetExecutingAssembly().GetName().Version.Build.ToString();
+                return $"{major}.{minor}.{build}";
+            }
         }
     }
 }

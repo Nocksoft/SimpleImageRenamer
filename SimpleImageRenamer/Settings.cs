@@ -42,7 +42,7 @@ namespace SimpleImageRenamer
         private static void SetAppDateDir()
         {
             string appdate = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            AppDataDir = Path.Combine(appdate, "Nocksoft", ProjectProperties.GetTitle());
+            AppDataDir = Path.Combine(appdate, "Nocksoft", AppInfo.Title);
         }
 
         internal static void SetDefaults()

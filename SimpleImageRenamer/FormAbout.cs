@@ -40,9 +40,9 @@ namespace SimpleImageRenamer
         {
             InitializeComponent();
 
-            Text = $"About {ProjectProperties.GetTitle()}";
-            labelTitle.Text = ProjectProperties.GetTitle();
-            labelDescription.Text = ProjectProperties.GetDescription();
+            Text = $"About {AppInfo.Title}";
+            labelTitle.Text = AppInfo.Title;
+            labelDescription.Text = AppInfo.Description;
         }
 
         private void richTextBoxLicense_KeyDown(object sender, KeyEventArgs e)
