@@ -86,7 +86,7 @@ namespace SimpleImageRenamer
             ExifDate = null;
         }
 
-        internal static bool SetNewFilename(int index, string format)
+        internal static bool SetNewFilename(int index, string format, RenameSettings.ExtensionStyles extStyle)
         {
             string extension = Path.GetExtension(Images.Imagelist[index].AbsPath);
             string imagetype = (from ext in Images.SupportedExtensions where ext[0].ToLower() == extension.ToLower() select ext[1]).First();
@@ -102,7 +102,7 @@ namespace SimpleImageRenamer
 
             try
             {
-                Images.Imagelist[index].NewFilename = GetNewFilename(Images.Imagelist[index].ExifDate, format, extension);
+                Images.Imagelist[index].NewFilename = GetNewFilename(Images.Imagelist[index].ExifDate, format, extension, extStyle);
                 return true;
             }
             catch (Exception)
@@ -112,11 +112,22 @@ namespace SimpleImageRenamer
             }
         }
 
-        private static string GetNewFilename(string exifDate, string format, string extension)
+        private static string GetNewFilename(string exifDate, string format, string extension, RenameSettings.ExtensionStyles extStyle)
         {
             if (exifDate == null) return null;
 
             string filename = format;
+            switch (extStyle)
+            {
+                case RenameSettings.ExtensionStyles.Lowercase:
+                    extension = extension.ToLower();
+                    break;
+                case RenameSettings.ExtensionStyles.Uppercase:
+                    extension = extension.ToUpper();
+                    break;
+                default:
+                    break;
+            }
             string regex = @"(?<={)(.+?)(?=})";
             var matches = Regex.Matches(format, regex).Cast<Match>();
 

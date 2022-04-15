@@ -38,6 +38,8 @@ namespace SimpleImageRenamer
 {
     public partial class FormMain : Form
     {
+        private RenameSettings.ExtensionStyles ExtensionStyle = RenameSettings.ExtensionStyles.Original;
+
         public FormMain()
         {
             InitializeComponent();
@@ -109,6 +111,14 @@ namespace SimpleImageRenamer
                 UpdateListViewImages();
         }
 
+        private void buttonRenameSettings_Click(object sender, EventArgs e)
+        {
+            var renameSettings = new FormRenameSettings(ExtensionStyle);
+            if (renameSettings.ShowDialog() != DialogResult.OK) return;
+            ExtensionStyle = renameSettings.ExtensionStyle;
+            UpdateListViewImages();
+        }
+
         private void UpdateListViewImages()
         {
             LockGui();
@@ -123,7 +133,7 @@ namespace SimpleImageRenamer
 
             for (int i = 0; i < Images.Imagelist.Count; i++)
             {
-                bool success = Image.SetNewFilename(i, format);
+                bool success = Image.SetNewFilename(i, format, ExtensionStyle);
                 if (!success)
                 {
                     MessageBox.Show($"No valid EXIF date could be read for \"{Images.Imagelist[i].AbsPath }\".{Environment.NewLine}When renaming, the old name will be retained.",

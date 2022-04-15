@@ -49,6 +49,7 @@ namespace SimpleImageRenamer
             this.statusStripStatusLabelStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.backgroundWorkerImportImages = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerRenameImages = new System.ComponentModel.BackgroundWorker();
+            this.buttonRenameSettings = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -125,7 +126,7 @@ namespace SimpleImageRenamer
             this.listViewImages.Location = new System.Drawing.Point(12, 82);
             this.listViewImages.Name = "listViewImages";
             this.listViewImages.Size = new System.Drawing.Size(704, 213);
-            this.listViewImages.TabIndex = 6;
+            this.listViewImages.TabIndex = 7;
             this.listViewImages.UseCompatibleStateImageBehavior = false;
             this.listViewImages.View = System.Windows.Forms.View.Details;
             // 
@@ -149,7 +150,7 @@ namespace SimpleImageRenamer
             this.buttonStartRenaming.Location = new System.Drawing.Point(12, 301);
             this.buttonStartRenaming.Name = "buttonStartRenaming";
             this.buttonStartRenaming.Size = new System.Drawing.Size(110, 23);
-            this.buttonStartRenaming.TabIndex = 7;
+            this.buttonStartRenaming.TabIndex = 8;
             this.buttonStartRenaming.Text = "Rename {n} Files";
             this.buttonStartRenaming.UseVisualStyleBackColor = true;
             this.buttonStartRenaming.Click += new System.EventHandler(this.buttonStartRenaming_Click);
@@ -219,11 +220,23 @@ namespace SimpleImageRenamer
             this.backgroundWorkerRenameImages.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerRenameImages_DoWork);
             this.backgroundWorkerRenameImages.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerRenameImages_RunWorkerCompleted);
             // 
+            // buttonRenameSettings
+            // 
+            this.buttonRenameSettings.BackgroundImage = global::SimpleImageRenamer.Properties.Resources.settings;
+            this.buttonRenameSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.buttonRenameSettings.Location = new System.Drawing.Point(317, 55);
+            this.buttonRenameSettings.Name = "buttonRenameSettings";
+            this.buttonRenameSettings.Size = new System.Drawing.Size(23, 22);
+            this.buttonRenameSettings.TabIndex = 6;
+            this.buttonRenameSettings.UseVisualStyleBackColor = true;
+            this.buttonRenameSettings.Click += new System.EventHandler(this.buttonRenameSettings_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(728, 355);
+            this.Controls.Add(this.buttonRenameSettings);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.textBoxFormatCustom);
             this.Controls.Add(this.radioButtonFormatCustom);
@@ -270,6 +283,7 @@ namespace SimpleImageRenamer
         private System.Windows.Forms.ToolStripProgressBar statusStripProgressBar;
         private System.ComponentModel.BackgroundWorker backgroundWorkerImportImages;
         private System.ComponentModel.BackgroundWorker backgroundWorkerRenameImages;
+        private System.Windows.Forms.Button buttonRenameSettings;
     }
 }
 
