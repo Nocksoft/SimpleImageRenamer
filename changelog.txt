@@ -1,5 +1,6 @@
 Changelog for version 0.0.x (preview) - (Release date: 202x-xx-xx)
 -Added option to to adjust file extension style
+-Fixed error while getting new filename
 
 
 

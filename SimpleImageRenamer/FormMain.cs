@@ -96,7 +96,6 @@ namespace SimpleImageRenamer
 
         private void radioButtonFormat_CheckedChanged(object sender, EventArgs e)
         {
-            Images.ResetNewFilenames();
             if (((RadioButton)sender).Checked) UpdateListViewImages();
         }
 
@@ -123,6 +122,7 @@ namespace SimpleImageRenamer
         {
             LockGui();
             Cursor = Cursors.WaitCursor;
+            Images.ResetNewFilenames();
             if (listViewImages.Items.Count > 0) listViewImages.Items.Clear();
             backgroundWorkerImportImages.RunWorkerAsync();
         }
